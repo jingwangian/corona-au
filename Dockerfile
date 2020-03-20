@@ -22,7 +22,6 @@ WORKDIR /opt/server
 
 RUN pip3 --no-cache-dir install -r /tmp/requirements.txt
 
-COPY data /opt/server/data
 COPY app /opt/server/app
 COPY config.py /opt/server/
 COPY main.py /opt/server/

@@ -11,7 +11,8 @@ services:
     environment:
       APP_NAME: 'corona'
       DATA_BASE_PATH: '/opt/server'
-
+    volumes:
+      - ./data:/opt/server/data
     command: python main.py
                 
 
