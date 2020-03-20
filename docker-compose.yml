@@ -1,0 +1,19 @@
+version: "3.6"
+
+services:
+  app:
+    image: corona-au-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8050:8050"
+    environment:
+      APP_NAME: 'corona'
+      DATA_BASE_PATH: '/opt/server'
+
+    command: python main.py
+                
+
+
+    
