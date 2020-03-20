@@ -2,6 +2,7 @@ import plotly.express as px
 import pandas as pd
 import dash_core_components as dcc
 import dash_html_components as html
+import dash_bootstrap_components as dbc
 
 from app.services.covid_time_series import COVIDTimeSeriesData
 from config import Config
@@ -39,7 +40,7 @@ def get_graph(state, status):
     id = f'id_{state}_{status}'
 
     df1 = df.drop(df.columns[0:4], axis=1)
-    return dcc.Graph(
+    fig = dcc.Graph(
         id=id,
         figure={
             'data': [
@@ -47,7 +48,24 @@ def get_graph(state, status):
                 # {'x': [1, 2, 3], 'y': [2, 4, 5], 'type': 'bar', 'name': u'Montréal'},
             ],
             'layout': {
-                'title': f'The number of people {status}'
-            }
+                'title': f'The number of people {status}',
+                'width': '400px',
+            },
+        },
+        config={
+            'responsive': True,
+        },
+        style={
+            'background': '0x123456',
         }
     )
+
+    card = dbc.Card(
+        dbc.CardBody(
+            [
+                fig,
+            ]
+        ),
+    )
+
+    return card
